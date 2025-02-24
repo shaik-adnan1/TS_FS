@@ -239,3 +239,136 @@ function printUser(): { name: string; age: number } {
 }
 
 console.log(printUser());
+
+// Type Aliases
+
+/**
+ *
+ * A type alias is a way to create a new name for an existing
+ * type. It allows you to define a custom type that refers to another type
+ * and give it a more meaningful or descriptive name.
+ *
+ * Type aliases are defined using the type keyword, followed
+ * by the name of the alias, an equal sign (=), and the type it refers to.
+ *
+ */
+
+type myString = string;
+
+type TypeObj = {
+  type: object;
+  name: string;
+};
+
+type Pers = {
+  fn: string;
+  ln: string;
+  age: number;
+};
+
+const namedComp: myString = "hey there";
+const namedObj: TypeObj = {
+  type: {},
+  name: "hey there",
+};
+
+const typeFunc = (person: Pers): string => {
+  return `Hello mr.${person.fn} ${person.ln}, your age is ${person.age}`;
+};
+
+const typeFuncRes = typeFunc({ fn: "Shaik", ln: "Adnan", age: 20 });
+console.log("---- here -----");
+console.log(typeFuncRes);
+
+// Optional Properties
+
+/**
+ *
+ * Can make any property optional, by adding a question
+ * mark at the end of the property.
+ *
+ */
+
+type Optional = {
+  name: string;
+  age?: number;
+  readonly location: string;
+};
+
+const optional: Optional = {
+  name: "Adnan",
+  location: "USA",
+};
+
+console.log(optional);
+
+const optionalFunc = (user: Optional, age: number = 23): string => {
+  return `Hello there, ${user.name} ${age} from ${user.location}`;
+};
+
+console.log(optionalFunc({ name: "Adnan", location: "India" }));
+
+// Read-only
+
+// will throw and error since optional.location is a readonly property
+// Error
+// optional.location = "China";
+
+// Intersection Types
+
+/**
+ *
+ * An intersection type is a way yo combine multiple
+ * types into a single type that includes all the properties
+ * and methods of constituent type.
+ *
+ */
+
+type UserInfo = {
+  fn: string;
+  ln: string;
+  age: number;
+};
+
+type AccountDetails = {
+  email: string;
+  phone: number;
+};
+
+type User = UserInfo & AccountDetails;
+
+const Adnan: User = {
+  fn: "Shaik",
+  ln: "Anjum",
+  age: 20,
+  phone: 13255,
+  email: "yousufwrk0@gmail.com",
+};
+
+console.log(Adnan);
+
+// Unions
+
+/**
+ *
+ * Unions are used to declare a type that can have one of
+ * several possible types. Unions are useful when we want to
+ * allow a variable or parameter to accept multiple types.
+ *
+ * The syntax for defining a union type in TS uses the pipe
+ * symbol (|)
+ *
+ */
+
+let myVar: number | string = 12;
+myVar = "string";
+
+type Adn = {
+  name: string;
+  age: number;
+  location: string;
+};
+
+const multArr: Adn[] = [{ name: "Adnan", age: 12, location: "China" }];
+
+console.log(multArr);
