@@ -369,6 +369,44 @@ type Adn = {
   location: string;
 };
 
-const multArr: Adn[] = [{ name: "Adnan", age: 12, location: "China" }];
+const multArr: (Adn | string)[] = [
+  { name: "Adnan", age: 12, location: "China" },
+  "hi",
+];
 
+const unionFunc = (users: number | string[]) => {
+  return users;
+};
+
+const uniRes = unionFunc(1);
+
+console.log(uniRes);
 console.log(multArr);
+
+// Literal type
+
+/**
+ *
+ * Literal types allow us to specify a value that can only be one specific literal value.
+ * This means that a variable with a literal type can only have one specific value and no other.
+ *
+ */
+
+let colour: "red" | "green" | "blue";
+
+colour = "red"; // valid
+// colour = "pink"; // inValid
+
+// Tuples
+
+/**
+ *
+ * Tuple is a type that represents an array with a fixed number of elements, where each element can have
+ * a different type. The order of the types in the tuples definition corresponds to the order of the values in the actual array.
+ *
+ */
+
+let myTuple: [string, number] = ["4", 4];
+
+console.log(myTuple[0]);
+console.log(myTuple[1]);
